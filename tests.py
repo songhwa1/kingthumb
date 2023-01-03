@@ -22,7 +22,6 @@ class GraphWidget(QWidget, form_class):
 
         rows1 = curs.fetchall()
 
-        # 테스트를 위해 변경
         crime_sum = 0
         for row in rows1:
             print(row)
