@@ -45,6 +45,31 @@
      <height>471</height>
     </rect>
    </property>
+   <column>
+    <property name="text">
+     <string>지방청</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>경찰서</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>구분</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>새 행</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>주소</string>
+    </property>
+   </column>
   </widget>
  </widget>
  <resources/>
