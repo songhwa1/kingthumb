@@ -18,17 +18,57 @@ class GraphWidget(QWidget, form_class):
         conn = pymysql.connect(host='127.0.0.1', user='root', password='agumon200_', db='data')
         curs = conn.cursor()
 
-        curs.execute("SELECT * FROM data.crime")
-
-        rows1 = curs.fetchall()
-
-        crime_sum = 0
-        for row in rows1:
+        curs.execute("SELECT * FROM data.crime where office like '서울%'")
+        rows = curs.fetchall()
+        seoul_sum = 0
+        for row in rows:
             print(row)
-            crime_sum += row[2] + row[3] + row[4] + row[5]
+            seoul_sum += row[2] + row[3] + row[4] + row[5]
 
-        x_plot = ["범죄수 합", "지역 2", "지역 3", "지역 4", "지역 5"]
-        y_plot = [crime_sum, 245, 543, 327, 356]
+        curs.execute("SELECT * FROM data.crime where office like '부산%'")
+        rows = curs.fetchall()
+        busan_sum = 0
+        for row in rows:
+            print(row)
+            busan_sum += row[2] + row[3] + row[4] + row[5]
+
+        curs.execute("SELECT * FROM data.crime where office like '대구%'")
+        rows = curs.fetchall()
+        daegu_sum = 0
+        for row in rows:
+            print(row)
+            daegu_sum += row[2] + row[3] + row[4] + row[5]
+
+        curs.execute("SELECT * FROM data.crime where office like '인천%'")
+        rows = curs.fetchall()
+        incheon_sum = 0
+        for row in rows:
+            print(row)
+            incheon_sum += row[2] + row[3] + row[4] + row[5]
+
+        curs.execute("SELECT * FROM data.crime where office like '광주%'")
+        rows = curs.fetchall()
+        gwangju_sum = 0
+        for row in rows:
+            print(row)
+            gwangju_sum += row[2] + row[3] + row[4] + row[5]
+
+        curs.execute("SELECT * FROM data.crime where office like '대전%'")
+        rows = curs.fetchall()
+        daejeon_sum = 0
+        for row in rows:
+            print(row)
+            daejeon_sum += row[2] + row[3] + row[4] + row[5]
+
+        curs.execute("SELECT * FROM data.crime where office like '울산%'")
+        rows = curs.fetchall()
+        ulsan_sum = 0
+        for row in rows:
+            print(row)
+            ulsan_sum += row[2] + row[3] + row[4] + row[5]
+
+        x_plot = ["서울", "부산", "대구", "인천", "광주", "대전", "울산"]
+        y_plot = [seoul_sum, busan_sum, daegu_sum, incheon_sum, gwangju_sum, daejeon_sum, ulsan_sum]
 
         x_dict = dict(enumerate(x_plot))
 
