@@ -6,7 +6,6 @@ import numpy as np
 from PyQt5 import uic
 import os
 import pymysql
-import matplotlib.pyplot as plt
 
 form_class = uic.loadUiType("d3f0837feab22ffb.ui")[0]
 
@@ -26,6 +25,10 @@ class GraphWidget(QWidget, form_class):
         # 데이터 베이스 연결
         conn = pymysql.connect(host='127.0.0.1', user='root', password='agumon200_', db='data')
         curs = conn.cursor()
+
+        # self.fig = plt.Figure()
+        # self.canvas = FigureCanvas(self.fig)
+        # self.graph1.addWidget(self.canvas)
 
         # 범죄 수 그래프 y값 설정
         curs.execute("SELECT * FROM data.crime where office like '서울%'")
@@ -136,14 +139,17 @@ class GraphWidget(QWidget, form_class):
                    ulsan_crime, sejong_crime, gyeonggi_crime, gangwon_crime,  chungbuk_crime, chungnam_crime,
                    jeonbuk_crime, jeonnam_crime, gyeongbuk_crime, gyeongnam_crime, jaeju_crime]
 
-        # x축 설정
+        # 그래프 x축 설정
         x_dict = dict(enumerate(crime_x))
         ticks = [list(zip(x_dict.keys(), x_dict.values()))]
-
-        # 범죄 수 그래프 그리기
-        self.graph1.plot(list(range(len(crime_x))), crime_y)
         crime_bottom = self.graph1.getAxis('bottom')
         crime_bottom.setTicks(ticks)
+
+        # 범죄 수 그래프
+        x = np.arange(17)
+        bar = pg.BarGraphItem(x=x, height=crime_y, width=0.3, pen=None, brush='b')
+        self.graph1.addItem(bar)
+        self.graph1.setLabel('bottom', '범죄 수')
         
         # 경찰서 수 y값 설정
         curs.execute("SELECT count(ji) FROM data.office where ji = '서울청'")
@@ -236,10 +242,10 @@ class GraphWidget(QWidget, form_class):
                     ulsan_office, sejong_office, gyeonggi_office, gangwon_office, chungbuk_office, chungnam_office,
                     jeonbuk_office, jeonnam_office, gyeongbuk_office, gyeongnam_office, jaeju_office]
 
-        # 경찰서 수 그래프 그리기
-        self.graph2.plot(list(range(len(crime_x))), office_y)
-        office_bottom = self.graph2.getAxis('bottom')
-        office_bottom.setTicks(ticks)
+        # # 경찰서 수 그래프 그리기
+        # self.graph2.plot(list(range(len(crime_x))), office_y)
+        # office_bottom = self.graph2.getAxis('bottom')
+        # office_bottom.setTicks(ticks)
 
         # curs.execute("SELECT * FROM ")
 

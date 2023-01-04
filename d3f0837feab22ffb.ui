@@ -298,17 +298,17 @@ font: 75 italic 18pt &quot;Sitka Banner&quot;;
       </property>
      </column>
     </widget>
-    <widget class="PlotWidget" name="graph2" native="true">
+    <widget class="PlotWidget" name="graph1" native="true">
      <property name="geometry">
       <rect>
        <x>960</x>
-       <y>30</y>
+       <y>40</y>
        <width>800</width>
        <height>400</height>
       </rect>
      </property>
     </widget>
-    <widget class="PlotWidget" name="graph1" native="true">
+    <widget class="PlotWidget" name="graph2" native="true">
      <property name="geometry">
       <rect>
        <x>960</x>
