@@ -6,8 +6,9 @@ import numpy as np
 from PyQt5 import uic
 import os
 import pymysql
+import matplotlib.pyplot as plt
 
-form_class = uic.loadUiType("graphui2.ui")[0]
+form_class = uic.loadUiType("d3f0837feab22ffb.ui")[0]
 
 
 class GraphWidget(QWidget, form_class):
@@ -140,8 +141,8 @@ class GraphWidget(QWidget, form_class):
         ticks = [list(zip(x_dict.keys(), x_dict.values()))]
 
         # 범죄 수 그래프 그리기
-        self.crimegraph.plot(list(range(len(crime_x))), crime_y)
-        crime_bottom = self.crimegraph.getAxis('bottom')
+        self.graph1.plot(list(range(len(crime_x))), crime_y)
+        crime_bottom = self.graph1.getAxis('bottom')
         crime_bottom.setTicks(ticks)
         
         # 경찰서 수 y값 설정
@@ -149,61 +150,95 @@ class GraphWidget(QWidget, form_class):
         office_row = curs.fetchall()
         for row in office_row:
             seoul_office = row[0]
-            print(seoul_office)
 
         curs.execute("SELECT count(ji) FROM data.office where ji = '부산청'")
         office_row = curs.fetchall()
         for row in office_row:
             busan_office = row[0]
-            print(busan_office)
 
         curs.execute("SELECT count(ji) FROM data.office where ji = '대구청'")
         office_row = curs.fetchall()
         for row in office_row:
             daegu_office = row[0]
-            print(daegu_office)
 
         curs.execute("SELECT count(ji) FROM data.office where ji = '인천청'")
         office_row = curs.fetchall()
         for row in office_row:
             incheon_office = row[0]
-            print(incheon_office)
 
         curs.execute("SELECT count(ji) FROM data.office where ji = '광주청'")
         office_row = curs.fetchall()
         for row in office_row:
             gwanju_office = row[0]
-            print(gwanju_office)
 
         curs.execute("SELECT count(ji) FROM data.office where ji = '대전청'")
         office_row = curs.fetchall()
         for row in office_row:
             daejeon_office = row[0]
-            print(daejeon_office)
 
         curs.execute("SELECT count(ji) FROM data.office where ji = '울산청'")
         office_row = curs.fetchall()
         for row in office_row:
             ulsan_office = row[0]
-            print(ulsan_office)
 
         curs.execute("SELECT count(ji) FROM data.office where ji = '세종청'")
         office_row = curs.fetchall()
         for row in office_row:
             sejong_office = row[0]
-            print(sejong_office)
 
         curs.execute("SELECT count(ji) FROM data.office where ji like '경기%'")
         office_row = curs.fetchall()
         for row in office_row:
-            gyeong = row[0]
-            print(busan_office)
+            gyeonggi_office = row[0]
 
-        office_y = [seoul_office, busan_office]
+        curs.execute("SELECT count(ji) FROM data.office where ji like '강원청'")
+        office_row = curs.fetchall()
+        for row in office_row:
+            gangwon_office = row[0]
+
+        curs.execute("SELECT count(ji) FROM data.office where ji like '충북청'")
+        office_row = curs.fetchall()
+        for row in office_row:
+            chungbuk_office = row[0]
+
+        curs.execute("SELECT count(ji) FROM data.office where ji like '충남청'")
+        office_row = curs.fetchall()
+        for row in office_row:
+            chungnam_office = row[0]
+
+        curs.execute("SELECT count(ji) FROM data.office where ji like '전북청'")
+        office_row = curs.fetchall()
+        for row in office_row:
+            jeonbuk_office = row[0]
+
+        curs.execute("SELECT count(ji) FROM data.office where ji like '전남청'")
+        office_row = curs.fetchall()
+        for row in office_row:
+            jeonnam_office = row[0]
+
+        curs.execute("SELECT count(ji) FROM data.office where ji like '경북청'")
+        office_row = curs.fetchall()
+        for row in office_row:
+            gyeongbuk_office = row[0]
+
+        curs.execute("SELECT count(ji) FROM data.office where ji like '경남청'")
+        office_row = curs.fetchall()
+        for row in office_row:
+            gyeongnam_office = row[0]
+
+        curs.execute("SELECT count(ji) FROM data.office where ji like '제주청'")
+        office_row = curs.fetchall()
+        for row in office_row:
+            jaeju_office = row[0]
+
+        # 경찰서 수 y값 설정
+        office_y = [seoul_office, busan_office, daegu_office, incheon_office, gwanju_office, daejeon_office,
+                    ulsan_office, sejong_office, gyeonggi_office, gangwon_office, chungbuk_office, chungnam_office,
+                    jeonbuk_office, jeonnam_office, gyeongbuk_office, gyeongnam_office, jaeju_office]
 
         # 경찰서 수 그래프 그리기
-        self.officegraph.plot(list(range(len(crime_x))), office_y)
-        office_bottom = self.officegraph.getAxis('bottom')
+        self.graph2.plot(list(range(len(crime_x))), office_y)
+        office_bottom = self.graph2.getAxis('bottom')
         office_bottom.setTicks(ticks)
 
         # curs.execute("SELECT * FROM ")
