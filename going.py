@@ -24,10 +24,10 @@ class Search(QWidget, form_widget):
                                port=3306,
                                user='root',
                                password='0000',
-                               db='safety'
+                               db='policearea'
                                )
         a = conn.cursor()
-        a.execute("SELECT * from 'safety'.'경찰서'")
+        a.execute("SELECT * from 'policearea'.'경찰서'")
         police = a.fetchall()
         police_list1 = list(police)
         self.police_info = []
