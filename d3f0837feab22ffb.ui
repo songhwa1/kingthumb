@@ -302,9 +302,9 @@ font: 75 italic 18pt &quot;Sitka Banner&quot;;
      <property name="geometry">
       <rect>
        <x>960</x>
-       <y>40</y>
+       <y>30</y>
        <width>800</width>
-       <height>400</height>
+       <height>250</height>
       </rect>
      </property>
     </widget>
@@ -312,9 +312,19 @@ font: 75 italic 18pt &quot;Sitka Banner&quot;;
      <property name="geometry">
       <rect>
        <x>960</x>
-       <y>450</y>
+       <y>300</y>
        <width>800</width>
-       <height>400</height>
+       <height>250</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="PlotWidget" name="graph3" native="true">
+     <property name="geometry">
+      <rect>
+       <x>960</x>
+       <y>570</y>
+       <width>800</width>
+       <height>250</height>
       </rect>
      </property>
     </widget>

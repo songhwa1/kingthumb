@@ -6,8 +6,12 @@ import numpy as np
 from PyQt5 import uic
 import os
 import pymysql
+# import matplotlib.pyplot as plt
+# from mpl_toolkits.mplot3d import Axes3D
+# from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 
 form_class = uic.loadUiType("d3f0837feab22ffb.ui")[0]
+# plt.rc('font', family='Malgun Gothic')
 
 
 class GraphWidget(QWidget, form_class):
@@ -139,6 +143,23 @@ class GraphWidget(QWidget, form_class):
                    ulsan_crime, sejong_crime, gyeonggi_crime, gangwon_crime,  chungbuk_crime, chungnam_crime,
                    jeonbuk_crime, jeonnam_crime, gyeongbuk_crime, gyeongnam_crime, jaeju_crime]
 
+        # crime_sum = 0
+        # for crime in crime_y:
+        #     crime_sum += crime
+        #
+        # crime_ratio = [seoul_crime/crime_sum, busan_crime/crime_sum, daegu_crime/crime_sum, incheon_crime/crime_sum,
+        #                gwanju_crime/crime_sum, daejeon_crime/crime_sum, ulsan_crime/crime_sum, sejong_crime/crime_sum,
+        #                gyeonggi_crime/crime_sum, gangwon_crime/crime_sum, chungbuk_crime/crime_sum,
+        #                chungnam_crime/crime_sum, jeonbuk_crime/crime_sum, jeonnam_crime/crime_sum,
+        #                gyeongbuk_crime/crime_sum, gyeongnam_crime/crime_sum, jaeju_crime/crime_sum]
+
+        # self.fig = plt.Figure()
+        # self.canvas = FigureCanvas(self.fig)
+        # self.crime_chart.addWidget(self.canvas)
+        # chart = self.fig.add_subplot(111)
+        # chart.pie(crime_ratio, labels=crime_x, autopct='%.1f%%')
+        # self.canvas.draw()
+
         # 그래프 x축 설정
         x_dict = dict(enumerate(crime_x))
         ticks = [list(zip(x_dict.keys(), x_dict.values()))]
@@ -242,10 +263,19 @@ class GraphWidget(QWidget, form_class):
                     ulsan_office, sejong_office, gyeonggi_office, gangwon_office, chungbuk_office, chungnam_office,
                     jeonbuk_office, jeonnam_office, gyeongbuk_office, gyeongnam_office, jaeju_office]
 
-        # # 경찰서 수 그래프 그리기
+        # x = np.arange(17) + 0.15
+        # bar = pg.BarGraphItem(x=x, height=office_y, width=0.3, pen=None, brush='b')
+        # self.graph1.addItem(bar)
+        # self.graph1.setLabel('bottom', '범죄 수')
+
+        # 경찰서 수 그래프 그리기
         # self.graph2.plot(list(range(len(crime_x))), office_y)
-        # office_bottom = self.graph2.getAxis('bottom')
-        # office_bottom.setTicks(ticks)
+        x = np.arange(17)
+        bar = pg.BarGraphItem(x=x, height=office_y, width=0.3, pen=None, brush='b')
+        self.graph2.addItem(bar)
+        self.graph2.setLabel('bottom', '경찰서 수')
+        office_bottom = self.graph2.getAxis('bottom')
+        office_bottom.setTicks(ticks)
 
         # curs.execute("SELECT * FROM ")
 
