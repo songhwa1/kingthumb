@@ -19,15 +19,15 @@ class GraphWidget(QWidget, form_class):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        self.pushButton_3.clicked.connect(self.office_graph)
-        self.pushButton_4.clicked.connect(self.crime_graph)
+        self.pushButton_3.clicked.connect(self.draw_office)
+        self.pushButton_4.clicked.connect(self.draw_crime)
 
         # #matplot 그래프 캔버스 설정
         # self.fig = plt.Figure()
         # self.canvas = FigureCanvas(self.fig)
         # self.graph1.addWidget(self.canvas)
 
-    def office_graph(self):
+    def draw_office(self):
         # 데이터 베이스 연결
         conn = pymysql.connect(host='127.0.0.1', user='root', password='agumon200_', db='data')
         curs = conn.cursor()
@@ -56,77 +56,45 @@ class GraphWidget(QWidget, form_class):
                     "경기", "강원", "충북", "충남", "전북", "전남", "경북", "경남", "제주"]
         x_dict = dict(enumerate(office_x))
         ticks = [list(zip(x_dict.keys(), x_dict.values()))]
-        crime_bottom = self.graph1.getAxis('bottom')
-        crime_bottom.setTicks(ticks)
         
         # 경찰서 수 그래프 y값 설정
-        curs.execute("SELECT count(ji) FROM data.office where ji = '서울청'")
-        office_row = curs.fetchall()
-        seoul_office = office_row[0]
-
-        curs.execute("SELECT count(ji) FROM data.office where ji = '부산청'")
-        office_row = curs.fetchall()
-        busan_office = office_row[0]
-
-        curs.execute("SELECT count(ji) FROM data.office where ji = '대구청'")
-        office_row = curs.fetchall()
-        daegu_office = office_row[0]
-
-        curs.execute("SELECT count(ji) FROM data.office where ji = '인천청'")
-        office_row = curs.fetchall()
-        incheon_office = office_row[0]
-
-        curs.execute("SELECT count(ji) FROM data.office where ji = '광주청'")
-        office_row = curs.fetchall()
-        gwangju_office = office_row[0]
-
-        curs.execute("SELECT count(ji) FROM data.office where ji = '대전청'")
-        office_row = curs.fetchall()
-        daejeon_office = office_row[0]
-
-        curs.execute("SELECT count(ji) FROM data.office where ji = '울산청'")
-        office_row = curs.fetchall()
-        ulsan_office = office_row[0]
-
-        curs.execute("SELECT count(ji) FROM data.office where ji = '세종청'")
-        office_row = curs.fetchall()
-        sejong_office = office_row[0]
-
-        curs.execute("SELECT count(ji) FROM data.office where ji like '경기%'")
-        office_row = curs.fetchall()
-        gyeonggi_office = office_row[0]
-
-        curs.execute("SELECT count(ji) FROM data.office where ji like '강원청'")
-        office_row = curs.fetchall()
-        gangwon_office = office_row[0]
-
-        curs.execute("SELECT count(ji) FROM data.office where ji like '충북청'")
-        office_row = curs.fetchall()
-        chungbuk_office = office_row[0]
-
-        curs.execute("SELECT count(ji) FROM data.office where ji like '충남청'")
-        office_row = curs.fetchall()
-        chungnam_office = office_row[0]
-
-        curs.execute("SELECT count(ji) FROM data.office where ji like '전북청'")
-        office_row = curs.fetchall()
-        jeonbuk_office = office_row[0]
-
-        curs.execute("SELECT count(ji) FROM data.office where ji like '전남청'")
-        office_row = curs.fetchall()
-        jeonnam_office = office_row[0]
-
-        curs.execute("SELECT count(ji) FROM data.office where ji like '경북청'")
-        office_row = curs.fetchall()
-        gyeongbuk_office = office_row[0]
-
-        curs.execute("SELECT count(ji) FROM data.office where ji like '경남청'")
-        office_row = curs.fetchall()
-        gyeongnam_office = office_row[0]
-
-        curs.execute("SELECT count(ji) FROM data.office where ji like '제주청'")
-        office_row = curs.fetchall()
-        jaeju_office = office_row[0]
+        for i in range(len(office_x)):
+            curs.execute("SELECT count(ji) FROM data.office where ji like '%s%%'" % office_x[i])
+            office_row = curs.fetchall()
+            if i == 0:
+                seoul_office = office_row[0]
+            elif i == 1:
+                busan_office = office_row[0]
+            elif i == 2:
+                daegu_office = office_row[0]
+            elif i == 3:
+                incheon_office = office_row[0]
+            elif i == 4:
+                gwangju_office = office_row[0]
+            elif i == 5:
+                daejeon_office = office_row[0]
+            elif i == 6:
+                ulsan_office = office_row[0]
+            elif i == 7:
+                sejong_office = office_row[0]
+            elif i == 8:
+                gyeonggi_office = office_row[0]
+            elif i == 9:
+                gangwon_office = office_row[0]
+            elif i == 10:
+                chungbuk_office = office_row[0]
+            elif i == 11:
+                chungnam_office = office_row[0]
+            elif i == 12:
+                jeonbuk_office = office_row[0]
+            elif i == 13:
+                jeonnam_office = office_row[0]
+            elif i == 14:
+                gyeongbuk_office = office_row[0]
+            elif i == 15:
+                gyeongnam_office = office_row[0]
+            elif i == 16:
+                jaeju_office = office_row[0]
 
         # 경찰서 수 y값 설정
         office_y = [seoul_office, busan_office, daegu_office, incheon_office, gwangju_office, daejeon_office,
@@ -139,97 +107,86 @@ class GraphWidget(QWidget, form_class):
         # self.graph1.addItem(bar)
         # self.graph1.setLabel('bottom', '범죄 수')
 
+        # 그래프 x축 설정
+        self.office_graph.setLabel('bottom', '[경찰서 수]')
+        office_bottom = self.office_graph.getAxis('bottom')
+        office_bottom.setTicks(ticks)
+
+        # 그래프 y축 설정
+        o_yticks = [[(0, '0 개'), (25, '25 개'), (50, '50 개'), (75, '75 개'), (100, '100 개'), (150, '150 개'),
+                     (200, '200 개'), (250, '250 개'), (300, '300 개'), (350, '250 개'), (400, '400 개')]]
+        office_left = self.office_graph.getAxis('left')
+        office_left.setTicks(o_yticks)
+
         # 경찰서 수 그래프 그리기
         # self.graph2.plot(list(range(len(crime_x))), office_y)
         x = np.arange(17)
         bar = pg.BarGraphItem(x=x, height=office_y, width=0.3, pen=None, brush='b')
-        self.graph2.addItem(bar)
-        self.graph2.setLabel('bottom', '경찰서 수')
-        office_bottom = self.graph2.getAxis('bottom')
-        office_bottom.setTicks(ticks)
+        self.office_graph.addItem(bar)
 
-        # 인구 수 그래프 y값 설정
-        curs.execute("SELECT sum(sum) FROM data.people where city = '서울%'")
-        people_row = curs.fetchall()
-        seoul_people = people_row[0]
+        people_x = ["서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종",
+                    "경기", "강원", "충청북", "충청남", "전라북", "전라남", "경상북", "경상남", "제주"]
 
-        curs.execute("SELECT sum(sum) FROM data.people where city = '부산%'")
-        people_row = curs.fetchall()
-        busan_people = people_row[0]
-
-        curs.execute("SELECT sum(sum) FROM data.people where city = '대구%'")
-        people_row = curs.fetchall()
-        daegu_people = people_row[0]
-
-        curs.execute("SELECT sum(sum) FROM data.people where city = '인천%'")
-        people_row = curs.fetchall()
-        incheon_people = people_row[0]
-
-        curs.execute("SELECT sum(sum) FROM data.people where city = '광주%'")
-        people_row = curs.fetchall()
-        gwangju_people = people_row[0]
-
-        curs.execute("SELECT sum(sum) FROM data.people where city = '대전%'")
-        people_row = curs.fetchall()
-        daejeon_people = people_row[0]
-
-        curs.execute("SELECT sum(sum) FROM data.people where city = '울산%'")
-        people_row = curs.fetchall()
-        ulsan_people = people_row[0]
-
-        curs.execute("SELECT sum(sum) FROM data.people where city = '세종%'")
-        people_row = curs.fetchall()
-        sejong_people = people_row[0]
-
-        curs.execute("SELECT sum(sum) FROM data.people where city = '경기%'")
-        people_row = curs.fetchall()
-        gyeonggi_people = people_row[0]
-
-        curs.execute("SELECT sum(sum) FROM data.people where city = '강원%'")
-        people_row = curs.fetchall()
-        gangwon_people = people_row[0]
-
-        curs.execute("SELECT sum(sum) FROM data.people where city = '충청북도'")
-        people_row = curs.fetchall()
-        chungbuk_people = people_row[0]
-
-        curs.execute("SELECT sum(sum) FROM data.people where city = '충청남도'")
-        people_row = curs.fetchall()
-        chungnam_people = people_row[0]
-
-        curs.execute("SELECT sum(sum) FROM data.people where city = '전라북도'")
-        people_row = curs.fetchall()
-        jeonbuk_people = people_row[0]
-
-        curs.execute("SELECT sum(sum) FROM data.people where city = '전라남도'")
-        people_row = curs.fetchall()
-        jeonnam_people = people_row[0]
-
-        curs.execute("SELECT sum(sum) FROM data.people where city = '경상북도'")
-        people_row = curs.fetchall()
-        gyeongbuk_people = people_row[0]
-
-        curs.execute("SELECT sum(sum) FROM data.people where city = '경상남도'")
-        people_row = curs.fetchall()
-        gyeongnam_people = people_row[0]
-
-        curs.execute("SELECT sum(sum) FROM data.people where city = '제주%'")
-        people_row = curs.fetchall()
-        jaeju_people = people_row[0]
+        for i in range(len(people_x)):
+            curs.execute("SELECT sum(sum) from data.peopletest where city like '%s%%'" % people_x[i])
+            people_row = curs.fetchall()
+            if i == 0:
+                seoul_people = people_row[0]
+            elif i == 1:
+                busan_people = people_row[0]
+            elif i == 2:
+                daegu_people = people_row[0]
+            elif i == 3:
+                incheon_people = people_row[0]
+            elif i == 4:
+                gwangju_people = people_row[0]
+            elif i == 5:
+                daejeon_people = people_row[0]
+            elif i == 6:
+                ulsan_people = people_row[0]
+            elif i == 7:
+                sejong_people = people_row[0]
+            elif i == 8:
+                gyeonggi_people = people_row[0]
+            elif i == 9:
+                gangwon_people = people_row[0]
+            elif i == 10:
+                chungbuk_people = people_row[0]
+            elif i == 11:
+                chungnam_people = people_row[0]
+            elif i == 12:
+                jeonbuk_people = people_row[0]
+            elif i == 13:
+                jeonnam_people = people_row[0]
+            elif i == 14:
+                gyeongbuk_people = people_row[0]
+            elif i == 15:
+                gyeongnam_people = people_row[0]
+            elif i == 16:
+                jaeju_people = people_row[0]
 
         people_y = [seoul_people, busan_people, daegu_people, incheon_people, gwangju_people, daejeon_people,
                     ulsan_people, sejong_people, gyeonggi_people, gangwon_people, chungbuk_people, chungnam_people,
                     jeonbuk_people, jeonnam_people, gyeongbuk_people, gyeongnam_people, jaeju_people]
 
+        # 그래프 x축 설정
+        self.people_graph.setLabel('bottom', '[지역 별 인구 수]')
+        people_bottom = self.people_graph.getAxis('bottom')
+        people_bottom.setTicks(ticks)
+
+        # 그래프 y축 설정
+        p_yticks = [[(0, '0 명'), (1000000, '100만 명'), (2000000, '200만 명'), (3000000, '300만 명'),
+                     (4000000, '400만 명'), (6000000, '600만 명'), (8000000, '800만 명'), (10000000, '1000만 명'),
+                     (12000000, '1200만 명'), (14000000, '1400만 명')]]
+        people_left = self.people_graph.getAxis('left')
+        people_left.setTicks(p_yticks)
+
         # 인구 수 그래프 그리기
         x = np.arange(17)
         bar = pg.BarGraphItem(x=x, height=people_y, width=0.3, pen=None, brush='b')
-        self.graph3.addItem(bar)
-        self.graph3.setLabel('bottom', '지역 별 인구 수')
-        people_bottom = self.graph3.getAxis('bottom')
-        people_bottom.setTicks(ticks)
+        self.people_graph.addItem(bar)
 
-    def crime_graph(self):
+    def draw_crime(self):
         # 데이터 베이스 연결
         conn = pymysql.connect(host='127.0.0.1', user='root', password='agumon200_', db='data')
         curs = conn.cursor()
@@ -239,111 +196,75 @@ class GraphWidget(QWidget, form_class):
                    "경기", "강원", "충북", "충남", "전북", "전남", "경북", "경남", "제주"]
         x_dict = dict(enumerate(crime_x))
         ticks = [list(zip(x_dict.keys(), x_dict.values()))]
-        crime_bottom = self.graph1.getAxis('bottom')
+        crime_bottom = self.crime_graph.getAxis('bottom')
         crime_bottom.setTicks(ticks)
 
+        # 그래프 y축 설정
+        c_yticks = [[(0, '0 건'), (10000, '1만 건'), (20000, '2만 건'), (30000, '3만 건'),
+                     (40000, '4만 건'), (60000, '6만 건'), (80000, '8만 건'), (100000, '10만 건')]]
+        crime_left = self.crime_graph.getAxis('left')
+        crime_left.setTicks(c_yticks)
+
+        seoul_crime, busan_crime, daegu_crime, incheon_crime, gwangju_crime = 0, 0, 0, 0, 0
+        daejeon_crime, ulsan_crime, sejong_crime, gyeonggi_crime = 0, 0, 0, 0
+        gangwon_crime, chungbuk_crime, chungnam_crime, jeonbuk_crime = 0, 0, 0, 0
+        jeonnam_crime, gyeongbuk_crime, gyeongnam_crime, jaeju_crime = 0, 0, 0, 0
+
         # 범죄 수 그래프 y값 설정
-        curs.execute("SELECT * FROM data.crime where office like '서울%'")
-        crime_rows = curs.fetchall()
-        seoul_crime = 0
-        for row in crime_rows:
-            seoul_crime += row[2] + row[3] + row[4] + row[5]
-
-        curs.execute("SELECT * FROM data.crime where office like '부산%'")
-        crime_rows = curs.fetchall()
-        busan_crime = 0
-        for row in crime_rows:
-            busan_crime += row[2] + row[3] + row[4] + row[5]
-
-        curs.execute("SELECT * FROM data.crime where office like '대구%'")
-        crime_rows = curs.fetchall()
-        daegu_crime = 0
-        for row in crime_rows:
-            daegu_crime += row[2] + row[3] + row[4] + row[5]
-
-        curs.execute("SELECT * FROM data.crime where office like '인천%'")
-        crime_rows = curs.fetchall()
-        incheon_crime = 0
-        for row in crime_rows:
-            incheon_crime += row[2] + row[3] + row[4] + row[5]
-
-        curs.execute("SELECT * FROM data.crime where office like '광주%'")
-        crime_rows = curs.fetchall()
-        gwangju_crime = 0
-        for row in crime_rows:
-            gwangju_crime += row[2] + row[3] + row[4] + row[5]
-
-        curs.execute("SELECT * FROM data.crime where office like '대전%'")
-        crime_rows = curs.fetchall()
-        daejeon_crime = 0
-        for row in crime_rows:
-            daejeon_crime += row[2] + row[3] + row[4] + row[5]
-
-        curs.execute("SELECT * FROM data.crime where office like '울산%'")
-        crime_rows = curs.fetchall()
-        ulsan_crime = 0
-        for row in crime_rows:
-            ulsan_crime += row[2] + row[3] + row[4] + row[5]
-
-        curs.execute("SELECT * FROM data.crime where office like '세종%'")
-        crime_rows = curs.fetchall()
-        sejong_crime = 0
-        for row in crime_rows:
-            sejong_crime += row[2] + row[3] + row[4] + row[5]
-
-        curs.execute("SELECT * FROM data.crime where office like '경기%'")
-        crime_rows = curs.fetchall()
-        gyeonggi_crime = 0
-        for row in crime_rows:
-            gyeonggi_crime += row[2] + row[3] + row[4] + row[5]
-
-        curs.execute("SELECT * FROM data.crime where office like '강원%'")
-        crime_rows = curs.fetchall()
-        gangwon_crime = 0
-        for row in crime_rows:
-            gangwon_crime += row[2] + row[3] + row[4] + row[5]
-
-        curs.execute("SELECT * FROM data.crime where office like '충북%'")
-        crime_rows = curs.fetchall()
-        chungbuk_crime = 0
-        for row in crime_rows:
-            chungbuk_crime += row[2] + row[3] + row[4] + row[5]
-
-        curs.execute("SELECT * FROM data.crime where office like '충남%'")
-        crime_rows = curs.fetchall()
-        chungnam_crime = 0
-        for row in crime_rows:
-            chungnam_crime += row[2] + row[3] + row[4] + row[5]
-
-        curs.execute("SELECT * FROM data.crime where office like '전북%'")
-        crime_rows = curs.fetchall()
-        jeonbuk_crime = 0
-        for row in crime_rows:
-            jeonbuk_crime += row[2] + row[3] + row[4] + row[5]
-
-        curs.execute("SELECT * FROM data.crime where office like '전남%'")
-        crime_rows = curs.fetchall()
-        jeonnam_crime = 0
-        for row in crime_rows:
-            jeonnam_crime += row[2] + row[3] + row[4] + row[5]
-
-        curs.execute("SELECT * FROM data.crime where office like '경북%'")
-        crime_rows = curs.fetchall()
-        gyeongbuk_crime = 0
-        for row in crime_rows:
-            gyeongbuk_crime += row[2] + row[3] + row[4] + row[5]
-
-        curs.execute("SELECT * FROM data.crime where office like '경남%'")
-        crime_rows = curs.fetchall()
-        gyeongnam_crime = 0
-        for row in crime_rows:
-            gyeongnam_crime += row[2] + row[3] + row[4] + row[5]
-
-        curs.execute("SELECT * FROM data.crime where office like '제주%'")
-        crime_rows = curs.fetchall()
-        jaeju_crime = 0
-        for row in crime_rows:
-            jaeju_crime += row[2] + row[3] + row[4] + row[5]
+        for i in range(len(crime_x)):
+            curs.execute("SELECT * FROM data.crime where office like '%s%%'" % crime_x[i])
+            crime_rows = curs.fetchall()
+            if i == 0:
+                for row in crime_rows:
+                    seoul_crime += row[2] + row[3] + row[4] + row[5]
+            elif i == 1:
+                for row in crime_rows:
+                    busan_crime += row[2] + row[3] + row[4] + row[5]
+            elif i == 2:
+                for row in crime_rows:
+                    daegu_crime += row[2] + row[3] + row[4] + row[5]
+            elif i == 3:
+                for row in crime_rows:
+                    incheon_crime += row[2] + row[3] + row[4] + row[5]
+            elif i == 4:
+                for row in crime_rows:
+                    gwangju_crime += row[2] + row[3] + row[4] + row[5]
+            elif i == 5:
+                for row in crime_rows:
+                    daejeon_crime += row[2] + row[3] + row[4] + row[5]
+            elif i == 6:
+                for row in crime_rows:
+                    ulsan_crime += row[2] + row[3] + row[4] + row[5]
+            elif i == 7:
+                for row in crime_rows:
+                    sejong_crime += row[2] + row[3] + row[4] + row[5]
+            elif i == 8:
+                for row in crime_rows:
+                    gyeonggi_crime += row[2] + row[3] + row[4] + row[5]
+            elif i == 9:
+                for row in crime_rows:
+                    gangwon_crime += row[2] + row[3] + row[4] + row[5]
+            elif i == 10:
+                for row in crime_rows:
+                    chungbuk_crime += row[2] + row[3] + row[4] + row[5]
+            elif i == 11:
+                for row in crime_rows:
+                    chungnam_crime += row[2] + row[3] + row[4] + row[5]
+            elif i == 12:
+                for row in crime_rows:
+                    jeonbuk_crime += row[2] + row[3] + row[4] + row[5]
+            elif i == 13:
+                for row in crime_rows:
+                    jeonnam_crime += row[2] + row[3] + row[4] + row[5]
+            elif i == 14:
+                for row in crime_rows:
+                    gyeongbuk_crime += row[2] + row[3] + row[4] + row[5]
+            elif i == 15:
+                for row in crime_rows:
+                    gyeongnam_crime += row[2] + row[3] + row[4] + row[5]
+            elif i == 16:
+                for row in crime_rows:
+                    jaeju_crime += row[2] + row[3] + row[4] + row[5]
 
         crime_y = [seoul_crime, busan_crime, daegu_crime, incheon_crime, gwangju_crime, daejeon_crime,
                    ulsan_crime, sejong_crime, gyeonggi_crime, gangwon_crime, chungbuk_crime, chungnam_crime,
@@ -352,8 +273,8 @@ class GraphWidget(QWidget, form_class):
         # 범죄 수 그래프
         x = np.arange(17)
         bar = pg.BarGraphItem(x=x, height=crime_y, width=0.3, pen=None, brush='b')
-        self.graph1.addItem(bar)
-        self.graph1.setLabel('bottom', '범죄 수')
+        self.crime_graph.addItem(bar)
+        self.crime_graph.setLabel('bottom', '[범죄 수]')
 
 
 if __name__ == "__main__":

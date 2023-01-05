@@ -36,9 +36,9 @@
      <property name="geometry">
       <rect>
        <x>60</x>
-       <y>10</y>
-       <width>551</width>
-       <height>91</height>
+       <y>20</y>
+       <width>550</width>
+       <height>50</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -54,7 +54,7 @@ font: 75 italic 36pt &quot;Sitka Banner&quot;;
      <property name="geometry">
       <rect>
        <x>800</x>
-       <y>110</y>
+       <y>80</y>
        <width>151</width>
        <height>51</height>
       </rect>
@@ -72,9 +72,9 @@ font: 75 italic 18pt &quot;Sitka Banner&quot;;
      <property name="geometry">
       <rect>
        <x>50</x>
-       <y>170</y>
+       <y>140</y>
        <width>901</width>
-       <height>301</height>
+       <height>350</height>
       </rect>
      </property>
      <property name="editTriggers">
@@ -115,7 +115,7 @@ font: 75 italic 18pt &quot;Sitka Banner&quot;;
      <property name="geometry">
       <rect>
        <x>50</x>
-       <y>110</y>
+       <y>80</y>
        <width>731</width>
        <height>51</height>
       </rect>
@@ -133,7 +133,7 @@ font: 75 30pt &quot;Sitka Banner&quot;;
      <property name="geometry">
       <rect>
        <x>800</x>
-       <y>50</y>
+       <y>20</y>
        <width>151</width>
        <height>51</height>
       </rect>
@@ -151,7 +151,7 @@ font: 75 italic 18pt &quot;Sitka Banner&quot;;
      <property name="geometry">
       <rect>
        <x>800</x>
-       <y>520</y>
+       <y>500</y>
        <width>151</width>
        <height>51</height>
       </rect>
@@ -169,7 +169,7 @@ font: 75 italic 18pt &quot;Sitka Banner&quot;;
      <property name="geometry">
       <rect>
        <x>630</x>
-       <y>50</y>
+       <y>20</y>
        <width>151</width>
        <height>51</height>
       </rect>
@@ -186,10 +186,10 @@ font: 75 italic 18pt &quot;Sitka Banner&quot;;
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
-       <x>50</x>
-       <y>480</y>
-       <width>571</width>
-       <height>91</height>
+       <x>60</x>
+       <y>500</y>
+       <width>550</width>
+       <height>50</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -205,7 +205,7 @@ font: 75 italic 36pt &quot;Sitka Banner&quot;;
      <property name="geometry">
       <rect>
        <x>50</x>
-       <y>580</y>
+       <y>560</y>
        <width>731</width>
        <height>51</height>
       </rect>
@@ -223,7 +223,7 @@ font: 75 30pt &quot;Sitka Banner&quot;;
      <property name="geometry">
       <rect>
        <x>800</x>
-       <y>580</y>
+       <y>560</y>
        <width>151</width>
        <height>51</height>
       </rect>
@@ -240,8 +240,8 @@ font: 75 italic 18pt &quot;Sitka Banner&quot;;
     <widget class="QPushButton" name="pushButton_4">
      <property name="geometry">
       <rect>
-       <x>640</x>
-       <y>520</y>
+       <x>630</x>
+       <y>500</y>
        <width>151</width>
        <height>51</height>
       </rect>
@@ -259,9 +259,9 @@ font: 75 italic 18pt &quot;Sitka Banner&quot;;
      <property name="geometry">
       <rect>
        <x>50</x>
-       <y>650</y>
+       <y>620</y>
        <width>901</width>
-       <height>171</height>
+       <height>220</height>
       </rect>
      </property>
      <property name="columnCount">
@@ -298,33 +298,33 @@ font: 75 italic 18pt &quot;Sitka Banner&quot;;
       </property>
      </column>
     </widget>
-    <widget class="PlotWidget" name="graph1" native="true">
+    <widget class="PlotWidget" name="crime_graph" native="true">
      <property name="geometry">
       <rect>
        <x>960</x>
-       <y>30</y>
+       <y>560</y>
        <width>800</width>
-       <height>250</height>
+       <height>280</height>
       </rect>
      </property>
     </widget>
-    <widget class="PlotWidget" name="graph2" native="true">
+    <widget class="PlotWidget" name="office_graph" native="true">
      <property name="geometry">
       <rect>
        <x>960</x>
-       <y>300</y>
+       <y>20</y>
        <width>800</width>
-       <height>250</height>
+       <height>270</height>
       </rect>
      </property>
     </widget>
-    <widget class="PlotWidget" name="graph3" native="true">
+    <widget class="PlotWidget" name="people_graph" native="true">
      <property name="geometry">
       <rect>
        <x>960</x>
-       <y>570</y>
+       <y>290</y>
        <width>800</width>
-       <height>250</height>
+       <height>270</height>
       </rect>
      </property>
     </widget>
@@ -827,11 +827,6 @@ color: rgb(0, 0, 0)
       <string>삭제</string>
      </property>
     </widget>
-   </widget>
-   <widget class="QWidget" name="tab_4">
-    <attribute name="title">
-     <string>그래프</string>
-    </attribute>
    </widget>
   </widget>
  </widget>
