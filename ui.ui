@@ -19,14 +19,14 @@
   <widget class="QTabWidget" name="tabWidget">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>9</y>
+     <x>0</x>
+     <y>0</y>
      <width>1771</width>
      <height>881</height>
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -717,22 +717,6 @@ font: 75 italic 30pt &quot;Sitka Banner&quot;;
       <string>경찰서 목록</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="police_check_comboBox">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>70</y>
-       <width>351</width>
-       <height>81</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">
-background-color:rgb(255, 255, 255);
-font: 20pt &quot;Cambria&quot;;
-</string>
-     </property>
-    </widget>
     <widget class="QTableWidget" name="chage_tableWidget">
      <property name="geometry">
       <rect>
@@ -816,6 +800,23 @@ color: rgb(0, 0, 0)
      </property>
      <property name="text">
       <string>메인화면</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="police_check_lineEdit">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>90</y>
+       <width>341</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 75 30pt &quot;Sitka Banner&quot;;
+color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>

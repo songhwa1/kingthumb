@@ -17,8 +17,9 @@ class Search(QWidget, form_widget):
         self.police_pushButton.clicked.connect(self.searchPolice)
         self.police_lineEdit.returnPressed.connect(self.searchPolice)
         self.crime_pushButton.clicked.connect(self.searchCrime)
-        self.crime_tableWidget.doubleClicked.connect(self.cellclicked)
+        self.crime_tableWidget.cellClicked.connect(self.addlabel)
         self.crime_lineEdit.returnPressed.connect(self.searchCrime)
+        self.add_button.clicked.connect(self.addcrime)
 
 
         # MySQL로 가공한 파일 csv파일로 만들기
@@ -97,16 +98,42 @@ class Search(QWidget, form_widget):
             self.crime_tableWidget.setItem(Row, 5, QTableWidgetItem(str(s[5])))
 
             Row += 1
+        conn.close()
 
-    def cellclicked(self, event):
+    # crime_tableWidget에서 수정/삭제로 넘어가는 함수
+    def cellclicked(self, row, column):
+        select = self.crime_tableWidget.item(row, column).text()    # 클릭한 cell값 추출
         reply = QMessageBox.question(self, "알림", "추가, 삭제 탭으로 이동 하시겠습니까?",
         QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
         if reply == QMessageBox.Yes:
             self.tabWidget.setCurrentIndex(2)
         else:
             pass
+        return select
 
-    # def addlabel(self):
+    # crime_tableWidget에서 수정/삭제로 넘어갈 때 경찰서 이름 lineedit에 추가
+    def addlabel(self, row, column):
+        select_police = self.cellclicked(row, column)
+        self.police_check_lineEdit.setText(select_police)
+
+    def addcrime(self):
+        crime_category = self.crime_category_lineEdit.text()
+        crime_number = self.crime_number_lineEdit.text()
+
+        # MySQL에서 import 해오기
+        conn = pymysql.connect(host='127.0.0.1',
+                               port=3306,
+                               user='root',
+                               password='0000',
+                               db='safety')
+        a = conn.cursor()
+        a.execute(f"SELECT * FROM safety.범죄건수 where 경찰서 like'%{word}%'")
+        crime = a.fetchall()
+
+
+
+
+
 
 
 if __name__ == "__main__":
