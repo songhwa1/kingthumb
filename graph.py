@@ -109,7 +109,8 @@ class TabWidget(QWidget, form_class):
         # 경찰서 수 그래프 그리기
         # self.graph2.plot(list(range(len(crime_x))), office_y)
         x = np.arange(17)
-        bar = pg.BarGraphItem(x=x, height=office_y, width=0.3, pen=None, brush='b')
+        bar = pg.BarGraphItem(x=x, height=office_y, width=0.3, pen=None, brush='b', name='경찰서 수')
+        self.office_graph.addLegend(offset=(-30, 30))
         self.office_graph.addItem(bar)
 
         people_x = ["서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종",
@@ -171,7 +172,8 @@ class TabWidget(QWidget, form_class):
 
         # 인구 수 그래프 그리기
         x = np.arange(17)
-        bar = pg.BarGraphItem(x=x, height=people_y, width=0.3, pen=None, brush='b')
+        bar = pg.BarGraphItem(x=x, height=people_y, width=0.3, pen=None, brush='b', name='인구 수')
+        self.people_graph.addLegend(offset=(-30, 30))
         self.people_graph.addItem(bar)
 
     def draw_crime(self):
@@ -257,7 +259,8 @@ class TabWidget(QWidget, form_class):
 
         # 범죄 수 그래프
         x = np.arange(17)
-        bar = pg.BarGraphItem(x=x, height=crime_y, width=0.3, pen=None, brush='b')
+        bar = pg.BarGraphItem(x=x, height=crime_y, width=0.3, pen=None, brush='b', name='범죄 수')
+        self.crime_graph.addLegend(offset=(-30, 30))
         self.crime_graph.addItem(bar)
         self.crime_graph.setLabel('bottom', '[범죄 수]')
 
