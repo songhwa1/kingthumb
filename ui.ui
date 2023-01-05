@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1800</width>
-    <height>900</height>
+    <height>902</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,7 +26,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>3</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -50,7 +50,7 @@ font: 75 italic 36pt &quot;Sitka Banner&quot;;
       <string>경찰서 조회</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="search_pushButton">
+    <widget class="QPushButton" name="police_pushButton">
      <property name="geometry">
       <rect>
        <x>800</x>
@@ -68,7 +68,7 @@ font: 75 italic 18pt &quot;Sitka Banner&quot;;
       <string>검색</string>
      </property>
     </widget>
-    <widget class="QTableWidget" name="tableWidget">
+    <widget class="QTableWidget" name="police_tableWidget">
      <property name="geometry">
       <rect>
        <x>50</x>
@@ -111,7 +111,7 @@ font: 75 italic 18pt &quot;Sitka Banner&quot;;
       </property>
      </column>
     </widget>
-    <widget class="QLineEdit" name="search_lineEdit">
+    <widget class="QLineEdit" name="police_lineEdit">
      <property name="geometry">
       <rect>
        <x>50</x>
@@ -129,7 +129,7 @@ font: 75 30pt &quot;Sitka Banner&quot;;
       <string/>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="modify_pushButton">
      <property name="geometry">
       <rect>
        <x>800</x>
@@ -147,7 +147,7 @@ font: 75 italic 18pt &quot;Sitka Banner&quot;;
       <string>수정</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="add_delete_pushButton">
      <property name="geometry">
       <rect>
        <x>800</x>
@@ -165,7 +165,7 @@ font: 75 italic 18pt &quot;Sitka Banner&quot;;
       <string>추가 및 삭제</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_3">
+    <widget class="QPushButton" name="police_graph_pushButton">
      <property name="geometry">
       <rect>
        <x>630</x>
@@ -201,7 +201,7 @@ font: 75 italic 36pt &quot;Sitka Banner&quot;;
       <string>경찰서별 범죄 조회</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="search_lineEdit_2">
+    <widget class="QLineEdit" name="crime_lineEdit">
      <property name="geometry">
       <rect>
        <x>50</x>
@@ -219,7 +219,7 @@ font: 75 30pt &quot;Sitka Banner&quot;;
       <string/>
      </property>
     </widget>
-    <widget class="QPushButton" name="search_pushButton_2">
+    <widget class="QPushButton" name="crime_pushButton">
      <property name="geometry">
       <rect>
        <x>800</x>
@@ -237,7 +237,7 @@ font: 75 italic 18pt &quot;Sitka Banner&quot;;
       <string>검색</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_4">
+    <widget class="QPushButton" name="crime_graph_pushButton">
      <property name="geometry">
       <rect>
        <x>630</x>
@@ -255,7 +255,7 @@ font: 75 italic 18pt &quot;Sitka Banner&quot;;
       <string>그래프</string>
      </property>
     </widget>
-    <widget class="QTableWidget" name="tableWidget_3">
+    <widget class="QTableWidget" name="crime_tableWidget">
      <property name="geometry">
       <rect>
        <x>50</x>
@@ -351,7 +351,7 @@ font: 75 italic 30pt &quot;Sitka Banner&quot;;
       <string>지방청 목록</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="ITEMLIST_2">
+    <widget class="QComboBox" name="district_office_combobox">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -385,7 +385,7 @@ font: 75 italic 30pt &quot;Sitka Banner&quot;;
       <string>경찰서 목록</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="ITEMLIST_5">
+    <widget class="QComboBox" name="police_combobox">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -419,7 +419,7 @@ font: 75 italic 30pt &quot;Sitka Banner&quot;;
       <string>관서명(세부지역)</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="ITEMLIST_6">
+    <widget class="QComboBox" name="detail_combobox">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -453,7 +453,7 @@ font: 75 italic 30pt &quot;Sitka Banner&quot;;
       <string>경찰_구분</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="ITEMNAME_7">
+    <widget class="QLineEdit" name="police_division_lineEdit">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -489,7 +489,7 @@ font: 75 italic 30pt &quot;Sitka Banner&quot;;
       <string>경찰_전화번호</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="ITEMNAME_8">
+    <widget class="QLineEdit" name="police_call_number_lineEdit">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -525,7 +525,7 @@ font: 75 italic 30pt &quot;Sitka Banner&quot;;
       <string>경찰_주소</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="ITEMNAME_9">
+    <widget class="QLineEdit" name="police_address_lineEdit">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -543,7 +543,7 @@ font: 75 30pt &quot;Sitka Banner&quot;;
       <string/>
      </property>
     </widget>
-    <widget class="QPushButton" name="CHANGEBUTTON_3">
+    <widget class="QPushButton" name="modify_button">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -564,7 +564,7 @@ color: rgb(0, 0, 0)
       <string>데이터 수정</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="CHANGEBUTTON_4">
+    <widget class="QPushButton" name="gomain_button">
      <property name="geometry">
       <rect>
        <x>210</x>
@@ -585,7 +585,7 @@ color: rgb(0, 0, 0)
       <string>메인화면</string>
      </property>
     </widget>
-    <widget class="QTableWidget" name="tableWidget_5">
+    <widget class="QTableWidget" name="modify_tableWidget">
      <property name="geometry">
       <rect>
        <x>430</x>
@@ -654,7 +654,7 @@ font: 75 italic 30pt &quot;Sitka Banner&quot;;
       <string>범죄 유형</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="ITEMNAME_2">
+    <widget class="QLineEdit" name="crime_category_lineEdit">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -690,7 +690,7 @@ font: 75 italic 30pt &quot;Sitka Banner&quot;;
       <string>범죄 건수</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="ITEMNAME_3">
+    <widget class="QLineEdit" name="crime_number_lineEdit">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -708,7 +708,7 @@ font: 75 30pt &quot;Sitka Banner&quot;;
       <string/>
      </property>
     </widget>
-    <widget class="QPushButton" name="CHANGEBUTTON">
+    <widget class="QPushButton" name="add_button">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -747,7 +747,7 @@ font: 75 italic 30pt &quot;Sitka Banner&quot;;
       <string>경찰서 목록</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBox">
+    <widget class="QComboBox" name="police_check_comboBox">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -763,7 +763,7 @@ font: 20pt &quot;Cambria&quot;;
 </string>
      </property>
     </widget>
-    <widget class="QTableWidget" name="tableWidget_2">
+    <widget class="QTableWidget" name="chage_tableWidget">
      <property name="geometry">
       <rect>
        <x>390</x>
@@ -806,7 +806,7 @@ font: 20pt &quot;Cambria&quot;;
       </property>
      </column>
     </widget>
-    <widget class="QPushButton" name="CHANGEBUTTON_5">
+    <widget class="QPushButton" name="delete_button">
      <property name="geometry">
       <rect>
        <x>200</x>
@@ -825,6 +825,128 @@ color: rgb(0, 0, 0)
      </property>
      <property name="text">
       <string>삭제</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="gotomain_button">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>450</y>
+       <width>171</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+border-radius: 20px;
+background-color:rgb(255, 255, 255);
+font: 20pt &quot;Cambria&quot;;
+color: rgb(0, 0, 0)
+}</string>
+     </property>
+     <property name="text">
+      <string>메인화면</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_4">
+    <attribute name="title">
+     <string>원형 차트</string>
+    </attribute>
+    <widget class="QWidget" name="verticalLayoutWidget_8">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>571</width>
+       <height>511</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="office_chart"/>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_9">
+     <property name="geometry">
+      <rect>
+       <x>600</x>
+       <y>330</y>
+       <width>571</width>
+       <height>511</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="people_chart"/>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget_10">
+     <property name="geometry">
+      <rect>
+       <x>1180</x>
+       <y>20</y>
+       <width>571</width>
+       <height>511</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="crime_chart"/>
+    </widget>
+    <widget class="QPushButton" name="o_chart_button">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>560</y>
+       <width>250</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+border-radius: 20px;
+background-color:rgb(255, 255, 255);
+font: 20pt &quot;Cambria&quot;;
+color: rgb(0, 0, 0)
+}</string>
+     </property>
+     <property name="text">
+      <string>전국 경찰서 비율</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="p_chart_button">
+     <property name="geometry">
+      <rect>
+       <x>760</x>
+       <y>260</y>
+       <width>250</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+border-radius: 20px;
+background-color:rgb(255, 255, 255);
+font: 20pt &quot;Cambria&quot;;
+color: rgb(0, 0, 0)
+}</string>
+     </property>
+     <property name="text">
+      <string>전국 인구수 비율</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="c_chart_button">
+     <property name="geometry">
+      <rect>
+       <x>1380</x>
+       <y>550</y>
+       <width>200</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{
+border-radius: 20px;
+background-color:rgb(255, 255, 255);
+font: 20pt &quot;Cambria&quot;;
+color: rgb(0, 0, 0)
+}</string>
+     </property>
+     <property name="text">
+      <string>전국 범죄 비율</string>
      </property>
     </widget>
    </widget>
