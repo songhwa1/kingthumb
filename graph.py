@@ -5,7 +5,6 @@ import numpy as np
 from PyQt5 import uic
 import pymysql
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 
 form_class = uic.loadUiType("ui.ui")[0]
