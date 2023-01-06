@@ -20,6 +20,7 @@ class Search(QWidget, form_widget):
         self.crime_tableWidget.cellClicked.connect(self.addlabel)
         self.crime_lineEdit.returnPressed.connect(self.searchCrime)
         self.add_button.clicked.connect(self.addcrime)
+        self.delete_button.clicked.connect(self.deletecrime)
 
 
         # MySQL로 가공한 파일 csv파일로 만들기
@@ -84,7 +85,7 @@ class Search(QWidget, form_widget):
                                password='0000',
                                db='safety')
         a = conn.cursor()
-        a.execute(f"SELECT * FROM safety.범죄건수 where 경찰서 like'%{word}%'")
+        a.execute(f"SELECT * FROM safety.crime_num where police like'%{word}%' and del=0")
         crime = a.fetchall()
 
         Row = 0
@@ -117,8 +118,12 @@ class Search(QWidget, form_widget):
         self.police_check_lineEdit.setText(select_police)
 
     def addcrime(self):
-        crime_category = self.crime_category_lineEdit.text()
-        crime_number = self.crime_number_lineEdit.text()
+        year1 = self.year_lineEdit.text()
+        police_check1 = self.police_check_lineEdit.text()
+        murder1 = self.murder_lineEdit.text()
+        burglar1 = self.burglar_lineEdit.text()
+        theft1 = self.theft_lineEdit.text()
+        violence1 = self.violence_lineEdit.text()
 
         # MySQL에서 import 해오기
         conn = pymysql.connect(host='127.0.0.1',
@@ -127,11 +132,91 @@ class Search(QWidget, form_widget):
                                password='0000',
                                db='safety')
         a = conn.cursor()
-        a.execute(f"SELECT * FROM safety.범죄건수 where 경찰서 like'%{word}%'")
+        sql = "INSERT INTO safety.crime_num(year,police,murder,burglar,theft,violence, del) VALUES (%d, '%s', %d, %d, %d, %d, 0);" % (int(year1), police_check1, int(murder1), int(burglar1), int(theft1), int(violence1))
+        a.execute(sql)
+        conn.commit()
+        a.execute("SELECT * FROM safety.crime_num where year = 2023")
         crime = a.fetchall()
+        print(crime)
+        Row = 0
+        self.change_tableWidget.setRowCount(len(crime))
+        if crime:
+            for i in crime:
+                self.change_tableWidget.setItem(Row, 0, QTableWidgetItem(str(int(i[0]))))
+                self.change_tableWidget.setItem(Row, 1, QTableWidgetItem(i[1]))
+                self.change_tableWidget.setItem(Row, 2, QTableWidgetItem(str(int(i[2]))))
+                self.change_tableWidget.setItem(Row, 3, QTableWidgetItem(str(int(i[3]))))
+                self.change_tableWidget.setItem(Row, 4, QTableWidgetItem(str(int(i[4]))))
+                self.change_tableWidget.setItem(Row, 5, QTableWidgetItem(str(int(i[5]))))
+                Row += 1
+
+    def deletecrime(self):
+        year1 = self.year_lineEdit.text()
+        police_check1 = self.police_check_lineEdit.text()
+        murder1 = self.murder_lineEdit.text()
+        burglar1 = self.burglar_lineEdit.text()
+        theft1 = self.theft_lineEdit.text()
+        violence1 = self.violence_lineEdit.text()
+
+        # MySQL에서 import 해오기
+        conn = pymysql.connect(host='127.0.0.1',
+                               port=3306,
+                               user='root',
+                               password='0000',
+                               db='safety')
+        a = conn.cursor()
+        #  year,police,murder,burglar,theft,violence, del
+        sql = "update safety.crime_num set del = 1 where year = %d and police = '%s' and murder = %d and burglar = %d and theft = %d and violence = %d;" %(int(year1), police_check1, int(murder1), int(burglar1), int(theft1), int(violence1))
+        a.execute(sql)
+        conn.commit()
+
+    # def addlabel(self, row, column):
+    #     select = self.crime_tableWidget.item(row, column).text()
+    #     self.police_check_lineEdit.setText(select)
+    #     reply = QMessageBox.question(self, "알림", "추가, 삭제 탭으로 이동 하시겠습니까?",
+    #                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+    #     if reply == QMessageBox.Yes:
+    #         self.tabWidget.setCurrentIndex(2)
+    #         mydb1 = pymysql.connect(host='127.0.0.1',
+    #                                 port=3306,
+    #                                 user='root',
+    #                                 password='0000',
+    #                                 db='safety')
+    #         a = mydb1.cursor()
+    #         a.execute("SELECT * FROM safety.범죄건수 WHERE 경찰서 = "'" + self.police_check_lineEdit.text() + "'")
+    #         result = a.fetchall()
+    #         print("*",result)
+    #
+    #         # a.execute("alter table safety.범죄건수 add 사이버범죄 varchar(100) not null")
+    #
+    #         sql = f"""(INSERT INTO safety.범죄건수 (발생년도, 경찰서, 살인, 강도, 절도, 폭력, 사이버범죄)
+    #                 VALUES ('{result[0][0]}','{result[0][1]}','{result[0][2]}','{result[0][3]}','{result[0][4]}','{result[0][5]}','{self.crime_number_lineEdit.text()}')"""
+    #         a.execute(sql)
+    #         a.execute("SELECT * FROM safety.범죄건수 WHERE 사이버범죄")
+    #         result1 = a.fetchall()
+    #         print(result1)
+    #
+    #         Row = 0
+    #         self.change_tableWidget.setRowCount(len(result1))
+    #         if result1:
+    #             for i in result1:
+    #                 self.change_tableWidget.setItem(Row, 0, QTableWidgetItem(str(int(i[0]))))
+    #                 self.change_tableWidget.setItem(Row, 1, QTableWidgetItem(i[1]))
+    #                 self.change_tableWidget.setItem(Row, 2, QTableWidgetItem(str(int(i[2]))))
+    #                 self.change_tableWidget.setItem(Row, 3, QTableWidgetItem(str(int(i[3]))))
+    #                 self.change_tableWidget.setItem(Row, 4, QTableWidgetItem(str(int(i[4]))))
+    #                 self.change_tableWidget.setItem(Row, 5, QTableWidgetItem(str(int(i[5]))))
+    #                 Row += 1
+    #         mydb1.close()
+    #     else:
+    #         pass
 
 
-
+    # SELECT * FROM safety.범죄건수;
+    # alter table safety.범죄건수 add 사이버범죄 varchar(100) not null;
+    # INSERT INTO safety.범죄건수 (발생년도, 경찰서, 살인, 강도, 절도, 폭력, 사이버범죄)
+    #     VALUES (2022,'광인개경찰서',1,1,1,1,1);
+    #  SELECT * FROM safety.범죄건수 WHERE 발생년도 = 2022;
 
 
 
