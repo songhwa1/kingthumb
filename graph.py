@@ -27,7 +27,7 @@ class TabWidget(QWidget, form_class):
         self.office_chart.addWidget(self.canvas2)
         self.people_chart.addWidget(self.canvas3)
         # 데이터 베이스 연결
-        self.conn = pymysql.connect(host='127.0.0.1', user='root', password='agumon200_', db='data')
+        self.conn = pymysql.connect(host='127.0.0.1', user='root', password='0000', db='data')
         self.curs = self.conn.cursor()
         # 그래프 기능
         self.police_graph_pushButton.clicked.connect(self.draw_office)
