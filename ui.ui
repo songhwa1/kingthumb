@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1800</width>
+    <width>1621</width>
     <height>900</height>
    </rect>
   </property>
@@ -518,7 +518,7 @@ font: 75 italic 30pt &quot;Sitka Banner&quot;;
       <rect>
        <x>20</x>
        <y>700</y>
-       <width>351</width>
+       <width>611</width>
        <height>61</height>
       </rect>
      </property>
@@ -579,7 +579,7 @@ color: rgb(0, 0, 0)
       <rect>
        <x>430</x>
        <y>30</y>
-       <width>621</width>
+       <width>1091</width>
        <height>451</height>
       </rect>
      </property>
@@ -595,6 +595,9 @@ font: 10pt &quot;Cambria&quot;;
      <property name="columnCount">
       <number>6</number>
      </property>
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>180</number>
+     </attribute>
      <column>
       <property name="text">
        <string>지방청</string>
@@ -835,7 +838,7 @@ color: rgb(0, 0, 0)
       <string>메인화면</string>
      </property>
     </widget>
-    <widget class="QLabel" name="add_delete_label">
+    <widget class="QLabel" name="police_check_lineEdit">
      <property name="geometry">
       <rect>
        <x>20</x>
